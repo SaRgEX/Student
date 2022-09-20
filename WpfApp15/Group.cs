@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp15
 {
-    public class Group
+    public partial class Group
     {
         public Group(int IdGroup, int IdSpeciality, int IdCourse)
         {

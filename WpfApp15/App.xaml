@@ -4,6 +4,30 @@
              xmlns:local="clr-namespace:WpfApp15"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Background" Value="DimGray"></Setter>
+            <Setter Property="FontStyle" Value="Italic"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="BorderBrush" Value="Gray"></Setter>
+        </Style>
+        <Style TargetType="{ x:Type Label}">
+            <Setter Property="Background" Value="Gray"></Setter>
+            <Setter Property="FontStyle" Value="Italic"></Setter>
+            <Setter Property="FontSize" Value="12.5"></Setter>
+            <Setter Property="BorderThickness" Value="2.5"></Setter>
+            <Setter Property="BorderBrush" Value="DimGray"></Setter>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="DimGray"></Setter>
+            <Setter Property="FontStyle" Value="Italic"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="BorderThickness" Value="2"></Setter>
+            <Setter Property="BorderBrush" Value="LightGray"></Setter>
+        </Style>
+        <Style TargetType="{x:Type ListBox}">
+            <Setter Property="Background" Value="LightGray"></Setter>
+            <Setter Property="FontStyle" Value="Italic"></Setter>
+        </Style>
     </Application.Resources>
 </Application>
