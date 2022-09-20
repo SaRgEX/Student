@@ -1,0 +1,85 @@
+﻿<Window x:Class="WpfApp15.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp15"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="5, 0">
+            <Label FontStyle="Italic" BorderThickness="1, 1" BorderBrush="Black">
+                Enter Speciality:
+            </Label>
+            <TextBox BorderBrush="Black" FontStyle="Italic" Name="textBoxSpeciality"></TextBox>
+
+            <Button FontStyle="Italic" BorderThickness="1" Click="TryAddSpecialityButton" Content="Add" Background="White"></Button>
+            <Label FontStyle="Italic" BorderThickness="1" BorderBrush="Black">
+                Select speciality:
+            </Label>
+            <ListBox Height="317" 
+                     ItemsSource="{Binding specialities}"
+                     Name="listBox">
+                <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <Run FontStyle="Italic" Text="{Binding NameSpeciality}"></Run>
+                    </TextBlock>
+                </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+            <Button FontStyle="Italic" Background="White" BorderThickness="1" Click="ButtonDeleteSpeciality" Content="Delete"></Button>
+        </StackPanel>
+        <StackPanel Margin="5, 0" Grid.Column="1">
+            <Label BorderBrush="Black" BorderThickness="1">
+                Enter group
+            </Label>
+            <TextBox Name="textBoxGroup" BorderThickness="1" BorderBrush="Black"></TextBox>
+            <Label BorderBrush="Black" BorderThickness="1">
+                Enter course
+            </Label>
+            <ComboBox Name="comboBoxCourse" 
+                      BorderBrush="Black"
+                      ItemsSource="{Binding course}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <Run Text="{Binding Id}"></Run>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Label BorderBrush="Black" BorderThickness="1">
+                Choose speciality:
+            </Label>
+            <ComboBox Name="comboBoxSpeciality" ItemsSource="{Binding specialities}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <Run Text="{Binding NameSpeciality}"></Run>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button Click="ButtonAddGroup" BorderBrush="Black" Background="White" Content="Add"></Button>
+            <ListBox BorderBrush="Black" Height="245" ItemsSource="{Binding group}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <Run Text="{Binding IdGroup}"></Run>
+                            <Run Text="{Binding IdSpeciality}"></Run>
+                            <Run Text="{Binding IdCourse}"></Run>
+                        </TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+    </Grid>
+</Window>
