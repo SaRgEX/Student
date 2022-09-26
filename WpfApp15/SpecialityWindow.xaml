@@ -8,22 +8,22 @@
       d:DesignHeight="450" d:DesignWidth="400"
       Title="SpecialityWindow">
 
-    <Grid Background="White">
+    <Grid Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel>
-            <Label>
+        <StackPanel Name="stackPanel">
+            <Label Name="lable">
                 Enter Speciality:
             </Label>
             <TextBox Name="textBox"></TextBox>
 
-            <Button Click="TryAddSpecialityButton" Content="Add"></Button>
+            <Button Name="buttonCreate" Click="TryAddSpecialityButton" Content="Add"></Button>
             <Label>
-                Select speciality:
+                Speciality:
             </Label>
         </StackPanel>
         
@@ -38,10 +38,16 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Grid.Row="2" Click="ButtonDeleteSpeciality" Content="Delete"></Button>
-        <WrapPanel Grid.Row="3">
-            <Button Width="200" Content="&lt;&lt; To the back Page" Click="ButtonBack"></Button>
-            <Button Width="200" Content="To the next page >>"></Button>
-        </WrapPanel>
+        <Button Grid.Row="2" Name="buttonDelete" Click="ButtonDeleteSpeciality" Content="Delete"></Button>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Content="&lt;&lt; To the back Page" Click="ButtonBack"></Button>
+            <Button Grid.Column="1" Content="Home" Click="ButtonHome"></Button>
+            <Button Grid.Column="2" Content="To the next page >>" Click="ButtonNext"></Button>
+        </Grid>
     </Grid>
 </Page>

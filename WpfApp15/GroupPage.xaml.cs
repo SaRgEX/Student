@@ -42,7 +42,7 @@ namespace WpfApp15
                 group.Clear();
                 NpgsqlCommand command = new NpgsqlCommand();
                 command.Connection = _connection.connection;
-                command.CommandText = "SELECT \"IdGroup\", \"IdSpeciality\", \"IdCourse\" FROM \"Group\"";
+                command.CommandText = "SELECT \"IdGroup\", \"IdCourse\", \"NameSpeciality\" FROM \"Group\"";
                 var result = command.ExecuteReader();
                 if (result.HasRows)
                 {
@@ -79,15 +79,14 @@ namespace WpfApp15
             {
                 NpgsqlCommand command = new NpgsqlCommand();
                 command.Connection = _connection.connection;
-                command.CommandText = "INSERT INTO \"Group\" (\"IdGroup\", \"IdSpeciality\", \"IdCourse\") " +
-                    "VALUES (@IdGroup, @IdSpeciality, @IdCourse)";
+                command.CommandText = "INSERT INTO \"Group\" (\"IdGroup\", \"IdCourse\", \"NameSpeciality\") " +
+                    "VALUES (@IdGroup, @IdCourse, @NameSpeciality)";
                 command.Parameters.AddWithValue("@IdGroup", NpgsqlDbType.Integer, Convert.ToInt32(textBoxGroup.Text));
-                command.Parameters.AddWithValue("@IdSpeciality", NpgsqlDbType.Integer, (comboBoxSpeciality.SelectedItem as Speciality).IdSpeciality);
+                command.Parameters.AddWithValue("@NameSpeciality", NpgsqlDbType.Integer, (comboBoxSpeciality.SelectedItem as Speciality).NameSpeciality);
                 command.Parameters.AddWithValue("@IdCourse", NpgsqlDbType.Integer, (comboBoxCourse.SelectedItem as Course).Id);
                 int result = command.ExecuteNonQuery();
                 if (result == 1)
                 {
-                    MessageBox.Show("Success");
                 }
                 LoadGroup();
             }
@@ -96,9 +95,24 @@ namespace WpfApp15
                 MessageBox.Show(ex.Message);
             }
         }
-        private void ButtonBack(object sender, RoutedEventArgs e)
+        private void ButtonHome(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(PageControl.GetMainPage);
+        }
+        private void ButtonNext(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(PageControl.GetStudentPage);
+        }
+        private void ButtonBack(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(PageControl.GetSpecialtyPage);
+        }
+        public void DeleteForUser()
+        {
+            stackPanel.Children.RemoveRange(0, 7);
+            Label label = new Label();
+            label.Content = "Groups:";
+            stackPanel.Children.Add(label);
         }
     }
 }

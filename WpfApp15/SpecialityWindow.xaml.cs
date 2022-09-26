@@ -41,7 +41,6 @@ namespace WpfApp15
                 int result = command.ExecuteNonQuery();
                 if (result == 1)
                 {
-                    MessageBox.Show("Success");
                     LoadSpecialty();
                 }
             }
@@ -66,7 +65,6 @@ namespace WpfApp15
                     {
                         specialities.Add(new Speciality(result.GetInt32(0), result.GetString(1)));
                     }
-                    MessageBox.Show("Success");
                 }
                 result.Close();
             }
@@ -89,7 +87,6 @@ namespace WpfApp15
                 int result = command.ExecuteNonQuery();
                 if (result == 1)
                 {
-                    MessageBox.Show("Success");
                     LoadSpecialty();
                 }
             }
@@ -98,9 +95,24 @@ namespace WpfApp15
                 MessageBox.Show("There is no items " + ex.Message);
             }
         }
-        private void ButtonBack(object sender, RoutedEventArgs e)
+        private void ButtonHome(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(PageControl.GetMainPage);
+        }
+        private void ButtonNext(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(PageControl.GetGroupPage);
+        }
+        private void ButtonBack(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(PageControl.GetStudentPage);
+        }
+        public void DeleteForUser()
+        {
+            stackPanel.Children.Remove(lable);
+            stackPanel.Children.Remove(textBox);
+            stackPanel.Children.Remove(buttonCreate);
+            grid.Children.Remove(buttonDelete);
         }
     }
 }

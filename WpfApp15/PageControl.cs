@@ -12,6 +12,8 @@ namespace WpfApp15
         public static SpecialtyPage specialty;
         public static StudentPage student;
         public static MainPage main;
+        public static LoginPage login;
+        public static RegistrationPage registration;
         public static GroupPage GetGroupPage
         {
             get
@@ -54,6 +56,28 @@ namespace WpfApp15
                     main = new MainPage();
                 }
                 return main;
+            }
+        }
+        public static RegistrationPage GetRegistrationPage
+        {
+            get
+            {
+                if (registration == null)
+                {
+                    registration = new RegistrationPage();
+                }
+                return registration;
+            }
+        }
+        public static LoginPage GetLoginPage
+        {
+            get
+            {
+                if (login == null)
+                {
+                    login = new LoginPage();
+                }
+                return login;
             }
         }
     }

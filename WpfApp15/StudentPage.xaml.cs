@@ -67,11 +67,6 @@ namespace WpfApp15
                     "VALUES (@FullName, @IdGroup)";
                 command.Parameters.AddWithValue("@FullName", NpgsqlDbType.Varchar, textBox.Text);
                 command.Parameters.AddWithValue("@IdGroup", NpgsqlDbType.Integer, (comboBox.SelectedItem as Group).IdGroup);
-                int result = command.ExecuteNonQuery();
-                if (result == 1)
-                {
-                    MessageBox.Show("Success");
-                }
                 LoadStudent();
             }
             catch (Exception ex)
@@ -79,9 +74,24 @@ namespace WpfApp15
                 MessageBox.Show(ex.Message);
             }
         }
-        private void ButtonBack(object sender, RoutedEventArgs e)
+        private void ButtonHome(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(PageControl.GetMainPage);
+        }
+        private void ButtonNext(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(PageControl.GetSpecialtyPage);
+        }
+        private void ButtonBack(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(PageControl.GetGroupPage);
+        }
+        public void DeleteForUsers()
+        {
+            stackPanel.Children.RemoveRange(0, 5);
+            Label label = new Label();
+            label.Content = "Students:";
+            stackPanel.Children.Add(label);
         }
     }
 }

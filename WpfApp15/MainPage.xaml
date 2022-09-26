@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="400"
       Title="MainPage">
 
-    <Grid Background="White">
+    <Grid Background="Gray">
         <StackPanel>
             <Button Click="ButtonMoveToSpecialityPage">
                 Go to speciality page

@@ -1,0 +1,24 @@
+﻿<Page x:Class="WpfApp15.RegistrationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp15"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="400"
+      Title="RegistrationPage">
+
+    <Grid Background="Gray">
+        <StackPanel>
+            <Label>Enter full name:</Label>
+            <TextBox Name="textBoxName"></TextBox>
+            <Label>Enter login:</Label>
+            <TextBox Name="textBoxLogin"></TextBox>
+            <Label>Enter password:</Label>
+            <TextBox Name="textBoxPassword"></TextBox>
+            <Button Content="Create" Click="ButtonRegistration"></Button>
+            <Button Margin="30, 100" Content="Already have an account?" Click="ButtonGoToLoginPage"></Button>
+        </StackPanel>
+        
+    </Grid>
+</Page>

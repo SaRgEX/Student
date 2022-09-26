@@ -8,13 +8,13 @@
       d:DesignHeight="450" d:DesignWidth="400"
       Title="StudentPage">
 
-    <Grid Margin="0, 5" Name="MainGrid" Background="White">
+    <Grid Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="3*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel>
+        <StackPanel Name="stackPanel">
             <Label>
                 Enter group:
             </Label>
@@ -37,15 +37,21 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
-                        <Run Text="{Binding FullName}"></Run>
                         <Run Text="{Binding IdGroup}"></Run>
+                        <Run Background="Gainsboro" Text="{Binding FullName}"></Run>
                     </TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <WrapPanel Grid.Row="2">
-            <Button Width="200" Content="&lt;&lt; To the back Page" Click="ButtonBack"></Button>
-            <Button Width="200" Content="To the next page >>"></Button>
-        </WrapPanel>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Content="&lt;&lt; To the back Page" Click="ButtonBack"></Button>
+            <Button Grid.Column="1" Content="Home" Click="ButtonHome"></Button>
+            <Button Grid.Column="2" Content="To the next page >>" Click="ButtonNext"></Button>
+        </Grid>
     </Grid>
 </Page>
