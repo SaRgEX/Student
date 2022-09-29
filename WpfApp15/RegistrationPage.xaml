@@ -10,11 +10,8 @@
 
     <Grid Background="Gray">
         <StackPanel>
-            <Label>Enter full name:</Label>
             <TextBox Name="textBoxName"></TextBox>
-            <Label>Enter login:</Label>
             <TextBox Name="textBoxLogin"></TextBox>
-            <Label>Enter password:</Label>
             <TextBox Name="textBoxPassword"></TextBox>
             <Button Content="Create" Click="ButtonRegistration"></Button>
             <Button Margin="30, 100" Content="Already have an account?" Click="ButtonGoToLoginPage"></Button>

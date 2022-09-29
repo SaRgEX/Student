@@ -29,7 +29,7 @@ namespace WpfApp15
             DataContext = this;
             LoadCourse();
             LoadGroup();
-
+            Placeholder.SetElement(textBoxGroup, "Group", "Enter Group");
             comboBoxSpeciality.SetBinding(ComboBox.ItemsSourceProperty, new Binding()
             {
                 Source = PageControl.GetSpecialtyPage.specialities
@@ -55,7 +55,7 @@ namespace WpfApp15
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MainWindow.MessageShow(ex.Message);
             }
         }
         private void LoadCourse()
@@ -92,7 +92,7 @@ namespace WpfApp15
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MainWindow.MessageShow(ex.Message);
             }
         }
         private void ButtonHome(object sender, RoutedEventArgs e)
@@ -109,10 +109,10 @@ namespace WpfApp15
         }
         public void DeleteForUser()
         {
-            stackPanel.Children.RemoveRange(0, 7);
-            Label label = new Label();
-            label.Content = "Groups:";
-            stackPanel.Children.Add(label);
+            for (int i = 0; i < stackPanel.Children.Count - 1; i++)
+            {
+                stackPanel.Children[i].Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

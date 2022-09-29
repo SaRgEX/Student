@@ -20,5 +20,8 @@
                 Go to student page
             </Button>
         </StackPanel>
+        <Button VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Padding="10" Click="ButtonExit">Exit</Button>
     </Grid>
 </Page>

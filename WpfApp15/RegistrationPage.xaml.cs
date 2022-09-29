@@ -25,6 +25,9 @@ namespace WpfApp15
         public RegistrationPage()
         {
             InitializeComponent();
+            Placeholder.SetElement(textBoxName, "Name", "Enter name");
+            Placeholder.SetElement(textBoxLogin, "Login", "Enter login");
+            Placeholder.SetElement(textBoxPassword, "Password", "Enter password");
         }
 
         private void ButtonGoToLoginPage(object sender, RoutedEventArgs e)
@@ -36,7 +39,6 @@ namespace WpfApp15
         {
             if (!ValidInput())
             {
-                MessageBox.Show("!zaebis");
                 return;
             }
             InsertData();
@@ -45,20 +47,23 @@ namespace WpfApp15
         {
             if (EmptyInput())
             {
-                MessageBox.Show("(in)Valid input");
+                MainWindow.MessageShow("(in)Valid input");
                 return false;
             }
             if (LoginExists())
             {
-                MessageBox.Show("Login has already existed");
+                MainWindow.MessageShow("Login has already existed");
                 return false;
             }
             return true;
         }
         private bool EmptyInput()
         {
-            return textBoxName.Text == String.Empty ||
+            return textBoxName.Text == "Enter name" ||
+                   textBoxLogin.Text == "Enter login" ||
+                   textBoxPassword.Text == "Enter password" ||
                    textBoxLogin.Text == String.Empty ||
+                   textBoxName.Text == String.Empty ||
                    textBoxPassword.Text == String.Empty;
         }
 
@@ -78,7 +83,7 @@ namespace WpfApp15
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MainWindow.MessageShow(ex.Message);
             }
             return false;
         }
@@ -96,7 +101,7 @@ namespace WpfApp15
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MainWindow.MessageShow(ex.Message);
             }
         }
     }

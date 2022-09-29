@@ -27,18 +27,17 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Label>
-                Enter full name student
-            </Label>
+
             <TextBox Name="textBox"></TextBox>
             <Button Click="ButtonAddStudent" Content="Add Student"></Button>
+            <Label>Students:</Label>
         </StackPanel>
         <ListBox Name="listBox" Grid.Row="1" ItemsSource="{Binding students}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock>
+                    <TextBlock TextWrapping="Wrap">
                         <Run Text="{Binding IdGroup}"></Run>
-                        <Run Background="Gainsboro" Text="{Binding FullName}"></Run>
+                        <Run Text="{Binding FullName}"></Run>
                     </TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>

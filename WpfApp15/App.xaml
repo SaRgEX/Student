@@ -29,5 +29,6 @@
             <Setter Property="Background" Value="LightGray"></Setter>
             <Setter Property="FontStyle" Value="Italic"></Setter>
         </Style>
+        
     </Application.Resources>
 </Application>

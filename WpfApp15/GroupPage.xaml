@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp15"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="400"
+      d:DesignHeight="450" d:DesignWidth="600"
       Title="GroupPage">
 
     <Grid>
@@ -16,12 +16,9 @@
         </Grid.RowDefinitions>
 
         <StackPanel Name="stackPanel">
-            <Label>
-                Enter group
-            </Label>
             <TextBox Name="textBoxGroup"></TextBox>
             <Label>
-                Enter course
+                Enter course:
             </Label>
             <ComboBox Name="comboBoxCourse" 
                       ItemsSource="{Binding course}">
@@ -46,6 +43,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
             <Button Click="ButtonAddGroup" Content="Add"></Button>
+            <Label>Group:</Label>
         </StackPanel>
         <ListBox Grid.Row="1"  ItemsSource="{Binding group}">
             <ListBox.ItemTemplate>

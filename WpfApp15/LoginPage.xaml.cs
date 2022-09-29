@@ -25,6 +25,8 @@ namespace WpfApp15
         public LoginPage()
         {
             InitializeComponent();
+            Placeholder.SetElement(textBoxLogin, "Login", "Enter login");
+            Placeholder.SetElement(textBoxPassword, "Password", "Enter password");
         }
 
         private void ButtonGoToRegPage(object sender, RoutedEventArgs e)
@@ -36,17 +38,21 @@ namespace WpfApp15
         {
             if (!CheckAuthorization())
             {
-                MessageBox.Show("Valid input");
+                MainWindow.MessageShow("Valid input");
                 return;
             }
-            if (CheckLogin())
+            if (!CheckLogin())
             {
-                NavigationService.Navigate(PageControl.GetMainPage);
+                MainWindow.MessageShow("Wrong login or password");
+                return;
             }
+            NavigationService.Navigate(PageControl.GetMainPage);
         }
         private bool CheckAuthorization()
         {
-            return textBoxLogin.Text != String.Empty ||
+            return textBoxLogin.Text != "Enter login" ||
+                   textBoxPassword.Text != "Enter password" ||
+                   textBoxLogin.Text != String.Empty ||
                    textBoxPassword.Text != String.Empty;
         }
         private bool CheckLogin()
@@ -59,33 +65,33 @@ namespace WpfApp15
                 command.Parameters.AddWithValue("@login", textBoxLogin.Text.Trim());
                 command.Parameters.AddWithValue("@password", textBoxPassword.Text.Trim());
                 var role = command.ExecuteReader();
-                role.Read();
-                if (role.GetString(0) == null)
+                if (role.HasRows)
                 {
-                    PageControl.GetSpecialtyPage.DeleteForUser();
-                    PageControl.GetGroupPage.DeleteForUser();
-                    PageControl.GetStudentPage.DeleteForUsers();
-                }
-                NpgsqlDataReader data = command.ExecuteReader();
-                if (data.HasRows)
-                {
+                    role.Read();
+                    if (role.IsDBNull(0))
+                    {
+                        PageControl.GetSpecialtyPage.DeleteForUser();
+                        PageControl.GetGroupPage.DeleteForUser();
+                        PageControl.GetStudentPage.DeleteForUsers();
+                    }
+
                     //data.Read();
 
                     //data.GetString(0);
 
-                    data.Close();
+                    role.Close();
                     return true;
                 }
-                data.Close();
+                role.Close();
                 return false;
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MainWindow.MessageShow(ex.Message);
             }
             return false;
         }
-        
+
     }
 }

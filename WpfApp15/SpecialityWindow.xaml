@@ -16,10 +16,9 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Name="stackPanel">
-            <Label Name="lable">
-                Enter Speciality:
-            </Label>
-            <TextBox Name="textBox"></TextBox>
+            <TextBox Name="textBox"
+                     Foreground="Gray">
+            </TextBox>
 
             <Button Name="buttonCreate" Click="TryAddSpecialityButton" Content="Add"></Button>
             <Label>

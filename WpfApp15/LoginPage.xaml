@@ -15,9 +15,7 @@
 
         </Grid.RowDefinitions>
         <StackPanel>
-            <Label>Enter login:</Label>
             <TextBox Name="textBoxLogin"></TextBox>
-            <Label>Enter password:</Label>
             <TextBox Name="textBoxPassword"></TextBox>
             <Button Content="Login" Click="ButtonLogin"></Button>
         </StackPanel>

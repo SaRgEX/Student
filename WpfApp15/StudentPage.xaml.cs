@@ -29,6 +29,7 @@ namespace WpfApp15
             InitializeComponent();
             DataContext = this;
             LoadStudent();
+            Placeholder.SetElement(textBox, "Student", "Enter student");
             comboBox.SetBinding(ComboBox.ItemsSourceProperty, new Binding()
             {
                 Source = PageControl.GetGroupPage.group
@@ -54,7 +55,7 @@ namespace WpfApp15
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MainWindow.MessageShow(ex.Message);
             }
         }
         private void ButtonAddStudent(object sender, RoutedEventArgs e)
@@ -71,7 +72,7 @@ namespace WpfApp15
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MainWindow.MessageShow(ex.Message);
             }
         }
         private void ButtonHome(object sender, RoutedEventArgs e)
@@ -88,10 +89,10 @@ namespace WpfApp15
         }
         public void DeleteForUsers()
         {
-            stackPanel.Children.RemoveRange(0, 5);
-            Label label = new Label();
-            label.Content = "Students:";
-            stackPanel.Children.Add(label);
+            for (int i = 0; i < stackPanel.Children.Count - 1; i++)
+            {
+                stackPanel.Children[i].Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

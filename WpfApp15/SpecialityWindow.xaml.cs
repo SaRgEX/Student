@@ -28,6 +28,8 @@ namespace WpfApp15
             InitializeComponent();
             LoadSpecialty();
             DataContext = this;
+
+            Placeholder.SetElement(textBox, "Speciality", "Enter Sepciality");
         }
         private void TryAddSpecialityButton(object sender, RoutedEventArgs e)
         {
@@ -46,7 +48,7 @@ namespace WpfApp15
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Already exist " + ex.Message);
+                MainWindow.MessageShow("Already exist " + ex.Message);
             }
         }
 
@@ -70,7 +72,7 @@ namespace WpfApp15
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Already exist" + ex.Message);
+                MainWindow.MessageShow("Already exist" + ex.Message);
             }
         }
 
@@ -92,7 +94,7 @@ namespace WpfApp15
             }
             catch (Exception ex)
             {
-                MessageBox.Show("There is no items " + ex.Message);
+                MainWindow.MessageShow("There is no items " + ex.Message);
             }
         }
         private void ButtonHome(object sender, RoutedEventArgs e)
@@ -109,10 +111,9 @@ namespace WpfApp15
         }
         public void DeleteForUser()
         {
-            stackPanel.Children.Remove(lable);
-            stackPanel.Children.Remove(textBox);
-            stackPanel.Children.Remove(buttonCreate);
-            grid.Children.Remove(buttonDelete);
+            textBox.Visibility = Visibility.Collapsed;
+            buttonCreate.Visibility = Visibility.Collapsed;
+            buttonDelete.Visibility = Visibility.Collapsed;
         }
     }
 }

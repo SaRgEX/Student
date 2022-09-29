@@ -35,5 +35,10 @@ namespace WpfApp15
         {
             NavigationService.Navigate(PageControl.GetStudentPage);
         }
+
+        private void ButtonExit(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(PageControl.GetLoginPage);
+        }
     }
 }
