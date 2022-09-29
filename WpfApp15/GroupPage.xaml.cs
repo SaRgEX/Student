@@ -82,7 +82,7 @@ namespace WpfApp15
                 command.CommandText = "INSERT INTO \"Group\" (\"IdGroup\", \"IdCourse\", \"NameSpeciality\") " +
                     "VALUES (@IdGroup, @IdCourse, @NameSpeciality)";
                 command.Parameters.AddWithValue("@IdGroup", NpgsqlDbType.Integer, Convert.ToInt32(textBoxGroup.Text));
-                command.Parameters.AddWithValue("@NameSpeciality", NpgsqlDbType.Integer, (comboBoxSpeciality.SelectedItem as Speciality).NameSpeciality);
+                command.Parameters.AddWithValue("@NameSpeciality", NpgsqlDbType.Integer, (comboBoxSpeciality.SelectedItem as Speciality).IdSpeciality);
                 command.Parameters.AddWithValue("@IdCourse", NpgsqlDbType.Integer, (comboBoxCourse.SelectedItem as Course).Id);
                 int result = command.ExecuteNonQuery();
                 if (result == 1)
