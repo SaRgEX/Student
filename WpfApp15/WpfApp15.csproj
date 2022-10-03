@@ -103,6 +103,9 @@
     <Compile Include="Connection.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="CreateListBox.cs" />
+    <Compile Include="DataUI.xaml.cs">
+      <DependentUpon>DataUI.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Group.cs" />
     <Compile Include="GroupPage.xaml.cs">
       <DependentUpon>GroupPage.xaml</DependentUpon>
@@ -134,6 +137,13 @@
     <Compile Include="TimetablePage.xaml.cs">
       <DependentUpon>TimetablePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TimetableUI.xaml.cs">
+      <DependentUpon>TimetableUI.xaml</DependentUpon>
+    </Compile>
+    <Page Include="DataUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GroupPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TimetablePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimetableUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

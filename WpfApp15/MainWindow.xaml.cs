@@ -32,7 +32,7 @@ namespace WpfApp15
         public MainWindow()
         {
             InitializeComponent();
-            Connection.Connect("localhost", "5432", "postgres", "123", "Student");
+            Connection.Connect("10.14.206.27", "5432", "student", "1234", "Students");
 
             _timer.Interval = new TimeSpan(0, 0, 0, 5);
             _timer.Tick += _timer_Tick;

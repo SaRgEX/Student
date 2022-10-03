@@ -8,7 +8,7 @@ namespace WpfApp15
 {
     public class Timetable
     {
-        public Timetable(int IdTimetable, int IdGroup, string Cabinet, int ThisСlass, DateTime Date)
+        public Timetable(int IdGroup, string Cabinet, int ThisСlass, DateTime Date)
         {
             this.IdTimetable = IdTimetable;
             this.IdGroup = IdGroup;

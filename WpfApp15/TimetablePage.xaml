@@ -42,15 +42,7 @@
             <Button Click="ButtonAddTimetable">Add</Button>
         </StackPanel>
         <Grid Name="grid" Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
+            <local:TimetableUI></local:TimetableUI>
             <!--<ListBox ItemsSource="{Binding timetables}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>

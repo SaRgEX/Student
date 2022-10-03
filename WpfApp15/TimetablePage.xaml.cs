@@ -21,8 +21,6 @@ namespace WpfApp15
     public partial class TimetablePage : Page
     {
         public ObservableCollection<Timetable> timetables { get; set; } = new ObservableCollection<Timetable>();
-        CreateListBox createListBox = new CreateListBox();
-        int count = 0;
         public TimetablePage()
         {
             InitializeComponent();
@@ -33,23 +31,6 @@ namespace WpfApp15
             Placeholder.SetElement(textBoxCabinet, "Class", "Enter cabinet");
             Placeholder.SetElement(textBoxBilling, "Billing", "Enter billing");
             LoadTimetable();
-            for (int i = 0; i < timetables.Count - 1; i++)
-            {
-                var day = timetables[i + 1].Date.Day;
-                
-                if (day != timetables[i].Date.Day)
-                {
-                    var listBox = createListBox.CreateList(timetables);
-                    if (count == 2)
-                    {
-                        Grid.SetColumn(listBox,count);
-
-                    }
-                    Grid.SetRow(listBox,count);
-                    grid.Children.Add(listBox);
-                    count++;
-                }
-            }
             comboBoxClass.Items.Add(1);
             comboBoxClass.Items.Add(2);
             comboBoxClass.Items.Add(3);
@@ -66,7 +47,7 @@ namespace WpfApp15
         {
             try
             {
-                NpgsqlCommand command = Connection.GetCommand("SELECT \"IdTimetable\", \"Group\".\"IdGroup\", \"Cabinet\", \"Class\", \"Date\" " +
+                NpgsqlCommand command = Connection.GetCommand("SELECT \"Group\".\"IdGroup\", \"Cabinet\", \"Class\", \"Date\" " +
                     "FROM \"Timetable\", \"Billing\", \"Group\" " +
                     "WHERE (\"Billing\".\"IdBilling\" = \"Timetable\".\"IdBilling\" AND \"Billing\".\"IdGroup\" = \"Group\".\"IdGroup\")");
                 var text = command.ExecuteReader();
@@ -75,7 +56,7 @@ namespace WpfApp15
                 {
                     while (result && text.Read())
                     {
-                        timetables.Add(new Timetable(text.GetInt32(0), text.GetInt32(1), text.GetString(2), text.GetInt32(3), text.GetDateTime(4)));
+                        timetables.Add(new Timetable(text.GetInt32(0), text.GetString(1), text.GetInt32(2), text.GetDateTime(3)));
                     }
                 }
                 text.Close();
