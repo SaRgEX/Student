@@ -1,4 +1,4 @@
-﻿<Page x:Class="WpfApp15.StudentPage"
+﻿<Page x:Class="WpfApp15.SpecialtyPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,41 +6,38 @@
       xmlns:local="clr-namespace:WpfApp15"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="400"
-      Title="StudentPage">
+      Title="SpecialityPage">
 
-    <Grid Name="MainGrid">
+    <Grid Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Name="stackPanel">
+            <TextBox Name="textBox"
+                     Foreground="Gray">
+            </TextBox>
+
+            <Button Name="buttonCreate" Click="TryAddSpecialityButton" Content="Add"></Button>
             <Label>
-                Enter group:
+                Speciality:
             </Label>
-            <ComboBox Name="comboBox">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock>
-                            <Run Text="{Binding IdGroup}"></Run>
-                        </TextBlock>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <TextBox Name="textBox"></TextBox>
-            <Button Click="ButtonAddStudent" Content="Add Student"></Button>
-            <Label>Students:</Label>
         </StackPanel>
-        <ListBox Name="listBox" Grid.Row="1" ItemsSource="{Binding students}">
+        
+        <ListBox Grid.Row="1"
+            ItemsSource="{Binding specialities}"
+                     Name="listBox">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock TextWrapping="Wrap">
-                        <Run Text="{Binding IdGroup}"></Run>
-                        <Run Text="{Binding FullName}"></Run>
+                    <TextBlock>
+                        <Run FontStyle="Italic" Text="{Binding NameSpeciality}"></Run>
                     </TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Button Grid.Row="2" Name="buttonDelete" Click="ButtonDeleteSpeciality" Content="Delete"></Button>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>

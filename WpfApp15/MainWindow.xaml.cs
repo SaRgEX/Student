@@ -22,13 +22,18 @@ namespace WpfApp15
     public partial class MainWindow : Window
     {
         public Connection _connection = new Connection();
+
         static DispatcherTimer _timer = new DispatcherTimer();
+
         static Border _border = new Border();
+
         static TextBlock _textBlock = new TextBlock();
+
         public MainWindow()
         {
             InitializeComponent();
-            
+            Connection.Connect("localhost", "5432", "postgres", "123", "Student");
+
             _timer.Interval = new TimeSpan(0, 0, 0, 5);
             _timer.Tick += _timer_Tick;
 
@@ -51,5 +56,4 @@ namespace WpfApp15
             _timer.Start();
         }
     }
-
 }

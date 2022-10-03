@@ -45,7 +45,7 @@
             <Button Click="ButtonAddGroup" Content="Add"></Button>
             <Label>Group:</Label>
         </StackPanel>
-        <ListBox Grid.Row="1"  ItemsSource="{Binding group}">
+        <ListBox Grid.Row="1" ItemsSource="{Binding group}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>

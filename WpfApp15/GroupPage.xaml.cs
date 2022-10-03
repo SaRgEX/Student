@@ -21,8 +21,9 @@ namespace WpfApp15
     public partial class GroupPage : Page
     {
         public ObservableCollection<Course> course { get; set; } = new ObservableCollection<Course>();
+
         public ObservableCollection<Group> group { get; set; } = new ObservableCollection<Group>();
-        private Connection _connection = new Connection();
+
         public GroupPage()
         {
             InitializeComponent();
@@ -35,14 +36,13 @@ namespace WpfApp15
                 Source = PageControl.GetSpecialtyPage.specialities
             });
         }
+
         private void LoadGroup()
         {
             try
             {
                 group.Clear();
-                NpgsqlCommand command = new NpgsqlCommand();
-                command.Connection = _connection.connection;
-                command.CommandText = "SELECT \"IdGroup\", \"IdCourse\", \"NameSpeciality\" FROM \"Group\"";
+                NpgsqlCommand command = Connection.GetCommand("SELECT \"IdGroup\", \"IdSpeciality\", \"IdCourse\" FROM \"Group\"");
                 var result = command.ExecuteReader();
                 if (result.HasRows)
                 {
@@ -58,11 +58,10 @@ namespace WpfApp15
                 MainWindow.MessageShow(ex.Message);
             }
         }
+
         private void LoadCourse()
         {
-            NpgsqlCommand command = new NpgsqlCommand();
-            command.Connection = _connection.connection;
-            command.CommandText = "SELECT \"IdCourse\" FROM \"Course\"";
+            NpgsqlCommand command = Connection.GetCommand("SELECT \"IdCourse\" FROM \"Course\"");
             var result = command.ExecuteReader();
             if (result.HasRows)
             {
@@ -73,16 +72,14 @@ namespace WpfApp15
             }
             result.Close();
         }
+
         private void ButtonAddGroup(object sender, RoutedEventArgs e)
         {
             try
             {
-                NpgsqlCommand command = new NpgsqlCommand();
-                command.Connection = _connection.connection;
-                command.CommandText = "INSERT INTO \"Group\" (\"IdGroup\", \"IdCourse\", \"NameSpeciality\") " +
-                    "VALUES (@IdGroup, @IdCourse, @NameSpeciality)";
+                NpgsqlCommand command = Connection.GetCommand("INSERT INTO \"Group\" (\"IdGroup\", \"IdCourse\", \"IdSpeciality\") VALUES (@IdGroup, @IdCourse, @IdSpeciality)");
                 command.Parameters.AddWithValue("@IdGroup", NpgsqlDbType.Integer, Convert.ToInt32(textBoxGroup.Text));
-                command.Parameters.AddWithValue("@NameSpeciality", NpgsqlDbType.Integer, (comboBoxSpeciality.SelectedItem as Speciality).IdSpeciality);
+                command.Parameters.AddWithValue("@IdSpeciality", NpgsqlDbType.Integer, (comboBoxSpeciality.SelectedItem as Speciality).IdSpeciality);
                 command.Parameters.AddWithValue("@IdCourse", NpgsqlDbType.Integer, (comboBoxCourse.SelectedItem as Course).Id);
                 int result = command.ExecuteNonQuery();
                 if (result == 1)
@@ -95,19 +92,23 @@ namespace WpfApp15
                 MainWindow.MessageShow(ex.Message);
             }
         }
+
         private void ButtonHome(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(PageControl.GetMainPage);
         }
+
         private void ButtonNext(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(PageControl.GetStudentPage);
         }
+
         private void ButtonBack(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(PageControl.GetSpecialtyPage);
         }
-        public void DeleteForUser()
+
+        public void HideFromUser()
         {
             for (int i = 0; i < stackPanel.Children.Count - 1; i++)
             {

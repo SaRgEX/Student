@@ -14,6 +14,8 @@ namespace WpfApp15
         public static MainPage main;
         public static LoginPage login;
         public static RegistrationPage registration;
+        public static TeacherPage teacher;
+        public static TimetablePage timetable;
         public static GroupPage GetGroupPage
         {
             get
@@ -25,6 +27,7 @@ namespace WpfApp15
                 return group;
             }
         }
+
         public static SpecialtyPage GetSpecialtyPage
         {
             get
@@ -36,6 +39,7 @@ namespace WpfApp15
                 return specialty;
             }
         }
+
         public static StudentPage GetStudentPage
         {
             get
@@ -47,6 +51,7 @@ namespace WpfApp15
                 return student;
             }
         }
+
         public static MainPage GetMainPage
         {
             get
@@ -58,6 +63,7 @@ namespace WpfApp15
                 return main;
             }
         }
+
         public static RegistrationPage GetRegistrationPage
         {
             get
@@ -69,6 +75,7 @@ namespace WpfApp15
                 return registration;
             }
         }
+
         public static LoginPage GetLoginPage
         {
             get
@@ -78,6 +85,30 @@ namespace WpfApp15
                     login = new LoginPage();
                 }
                 return login;
+            }
+        }
+
+        public static TeacherPage GetTeacherPage
+        {
+            get
+            {
+                if (teacher == null)
+                {
+                    teacher = new TeacherPage();
+                }
+                return teacher;
+            }
+        }
+
+        public static TimetablePage GetTimetablePage
+        {
+            get
+            {
+                if (timetable == null)
+                {
+                    timetable = new TimetablePage();
+                }
+                return timetable;
             }
         }
     }

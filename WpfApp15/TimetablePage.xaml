@@ -1,0 +1,81 @@
+﻿<Page x:Class="WpfApp15.TimetablePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp15"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="400"
+      Title="TimetablePage">
+    <Grid Background="Gray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <Label>Choose class</Label>
+                    <ComboBox Name="comboBoxClass"></ComboBox>
+                    <TextBox Name="textBoxDate"></TextBox>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Label>Choose group</Label>
+                    <ComboBox Name="comboBoxGroup">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding IdGroup}"></Run>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBox Name="textBoxCabinet"></TextBox>
+                </StackPanel>
+            </Grid>
+            <TextBox Name="textBoxBilling"></TextBox>
+            <Button Click="ButtonAddTimetable">Add</Button>
+        </StackPanel>
+        <Grid Name="grid" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--<ListBox ItemsSource="{Binding timetables}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <Run FontSize="20" Text="{Binding Class}"></Run>
+                            <TextBlock>
+                                <Run Text="{Binding IdGroup}"></Run>
+                                <Run Text="{Binding Cabinet}"></Run>
+                                <LineBreak></LineBreak>
+                                <Run Text="{Binding Date}"></Run>
+                            </TextBlock>
+                        </TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>-->
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Content="&lt;&lt; To the back Page" Click="ButtonBack"></Button>
+            <Button Grid.Column="1" Content="Home" Click="ButtonHome"></Button>
+            <Button Grid.Column="2" Content="To the next page >>" Click="ButtonNext"></Button>
+        </Grid>
+    </Grid>
+</Page>

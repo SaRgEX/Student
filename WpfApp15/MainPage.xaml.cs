@@ -40,5 +40,15 @@ namespace WpfApp15
         {
             NavigationService.Navigate(PageControl.GetLoginPage);
         }
+
+        private void ButtonMoveToTeacherPage(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(PageControl.GetTeacherPage);
+        }
+
+        private void ButtonMoveToTimetablePage(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(PageControl.GetTimetablePage);
+        }
     }
 }

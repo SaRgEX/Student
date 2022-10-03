@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WpfApp15"
   ],
-  "SelectedNode": "\\WpfApp15.sln",
+  "SelectedNode": "\\WpfApp15\\CreateListBox.cs",
   "PreviewInSolutionExplorer": false
 }

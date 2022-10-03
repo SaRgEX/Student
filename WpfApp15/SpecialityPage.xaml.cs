@@ -20,7 +20,6 @@ namespace WpfApp15
 {
     public partial class SpecialtyPage : Page
     {
-        private Connection _connection = new Connection();
         public ObservableCollection<Speciality> specialities { get; set; } = new ObservableCollection<Speciality>();
 
         public SpecialtyPage()
@@ -28,17 +27,15 @@ namespace WpfApp15
             InitializeComponent();
             LoadSpecialty();
             DataContext = this;
-
             Placeholder.SetElement(textBox, "Speciality", "Enter Sepciality");
         }
+
         private void TryAddSpecialityButton(object sender, RoutedEventArgs e)
         {
             try
             {
                 string nameSpeciality = textBox.Text.Trim();
-                NpgsqlCommand command = new NpgsqlCommand();
-                command.Connection = _connection.connection;
-                command.CommandText = "INSERT INTO \"Speciality\"(\"NameSpeciality\") VALUES (@NameSpeciality)";
+                NpgsqlCommand command = Connection.GetCommand("INSERT INTO \"Speciality\"(\"NameSpeciality\") VALUES (@NameSpeciality)");
                 command.Parameters.AddWithValue("@NameSpeciality", NpgsqlDbType.Varchar, nameSpeciality);
                 int result = command.ExecuteNonQuery();
                 if (result == 1)
@@ -57,9 +54,7 @@ namespace WpfApp15
             specialities.Clear();
             try
             {
-                NpgsqlCommand command = new NpgsqlCommand();
-                command.Connection = _connection.connection;
-                command.CommandText = "SELECT \"IdSpeciality\", \"NameSpeciality\" FROM \"Speciality\"";
+                NpgsqlCommand command = Connection.GetCommand("SELECT \"IdSpeciality\", \"NameSpeciality\" FROM \"Speciality\"");
                 var result = command.ExecuteReader();
                 if (result.HasRows)
                 {
@@ -82,9 +77,7 @@ namespace WpfApp15
             {
                 if (listBox.SelectedItem == null) return;
                 int selectedItem = (listBox.SelectedItem as Speciality).IdSpeciality;
-                NpgsqlCommand command = new NpgsqlCommand();
-                command.Connection = _connection.connection;
-                command.CommandText = "DELETE FROM \"Speciality\" WHERE \"Speciality\".\"IdSpeciality\"=@IdSpeciality;";
+                NpgsqlCommand command = Connection.GetCommand("DELETE FROM \"Speciality\" WHERE \"Speciality\".\"IdSpeciality\"=@IdSpeciality;");
                 command.Parameters.AddWithValue("@IdSpeciality", NpgsqlDbType.Integer, selectedItem);
                 int result = command.ExecuteNonQuery();
                 if (result == 1)
@@ -97,6 +90,7 @@ namespace WpfApp15
                 MainWindow.MessageShow("There is no items " + ex.Message);
             }
         }
+
         private void ButtonHome(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(PageControl.GetMainPage);
@@ -107,9 +101,9 @@ namespace WpfApp15
         }
         private void ButtonBack(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(PageControl.GetStudentPage);
+            NavigationService.Navigate(PageControl.GetTimetablePage);
         }
-        public void DeleteForUser()
+        public void HideFromUser()
         {
             textBox.Visibility = Visibility.Collapsed;
             buttonCreate.Visibility = Visibility.Collapsed;

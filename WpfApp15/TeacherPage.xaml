@@ -1,4 +1,4 @@
-﻿<Page x:Class="WpfApp15.SpecialtyPage"
+﻿<Page x:Class="WpfApp15.TeacherPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,38 +6,31 @@
       xmlns:local="clr-namespace:WpfApp15"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="400"
-      Title="SpecialityWindow">
+      Title="TeacherPage">
 
-    <Grid Name="grid">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Name="stackPanel">
-            <TextBox Name="textBox"
-                     Foreground="Gray">
-            </TextBox>
-
-            <Button Name="buttonCreate" Click="TryAddSpecialityButton" Content="Add"></Button>
-            <Label>
-                Speciality:
-            </Label>
+            <TextBox Name="textBox"></TextBox>
+            <Button Click="ButtonAddTeacher">Add Teacher</Button>
+            <Label> Teachers:</Label>
         </StackPanel>
-        
-        <ListBox Grid.Row="1"
-            ItemsSource="{Binding specialities}"
-                     Name="listBox">
+        <ListBox 
+            Grid.Row="1"
+            Name="listBox"
+            ItemsSource="{Binding teachers}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
-                        <Run FontStyle="Italic" Text="{Binding NameSpeciality}"></Run>
+                        <Run Text="{Binding FullName}"></Run>
                     </TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Grid.Row="2" Name="buttonDelete" Click="ButtonDeleteSpeciality" Content="Delete"></Button>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>

@@ -102,6 +102,7 @@
     </ApplicationDefinition>
     <Compile Include="Connection.cs" />
     <Compile Include="Course.cs" />
+    <Compile Include="CreateListBox.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="GroupPage.xaml.cs">
       <DependentUpon>GroupPage.xaml</DependentUpon>
@@ -118,12 +119,20 @@
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Speciality.cs" />
-    <Compile Include="SpecialityWindow.xaml.cs">
-      <DependentUpon>SpecialityWindow.xaml</DependentUpon>
+    <Compile Include="SpecialityPage.xaml.cs">
+      <DependentUpon>SpecialityPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Student.cs" />
     <Compile Include="StudentPage.xaml.cs">
       <DependentUpon>StudentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher.cs" />
+    <Compile Include="TeacherPage.xaml.cs">
+      <DependentUpon>TeacherPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Timetable.cs" />
+    <Compile Include="TimetablePage.xaml.cs">
+      <DependentUpon>TimetablePage.xaml</DependentUpon>
     </Compile>
     <Page Include="GroupPage.xaml">
       <SubType>Designer</SubType>
@@ -153,11 +162,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SpecialityWindow.xaml">
+    <Page Include="SpecialityPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StudentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TeacherPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimetablePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

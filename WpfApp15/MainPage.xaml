@@ -19,6 +19,12 @@
             <Button Click="ButtonMoveToStudentPage">
                 Go to student page
             </Button>
+            <Button Click="ButtonMoveToTeacherPage">
+                Go to teacher page
+            </Button>
+            <Button Click="ButtonMoveToTimetablePage">
+                Go to timetable page
+            </Button>
         </StackPanel>
         <Button VerticalAlignment="Bottom"
                 HorizontalAlignment="Center"

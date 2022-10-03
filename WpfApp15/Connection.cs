@@ -21,17 +21,23 @@ namespace WpfApp15
 
     public class Connection
     {
-        public NpgsqlConnection connection;
+        private static NpgsqlConnection connection;
         public Connection()
         {
-            Connect("10.14.206.27", "5432", "student", "1234", "Students");
         }
-        private void Connect(string host, string port, string user, string pass, string dbname)
+        public static void Connect(string host, string port, string user, string pass, string dbname)
         {
             string cs = string.Format("Server={0};Port={1};User ID={2};Password={3};DataBase={4}", host, port, user, pass, dbname);
 
             connection = new NpgsqlConnection(cs);
             connection.Open();
+        }
+        public static NpgsqlCommand GetCommand(string _command)
+        {
+            NpgsqlCommand command = new NpgsqlCommand();
+            command.Connection = connection;
+            command.CommandText = _command;
+            return command;
         }
     }
 }

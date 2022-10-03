@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="400" WindowStyle="SingleBorderWindow">
     <Grid Background="Gray">
-        <Frame Name="AppFrame" Source="LoginPage.xaml" NavigationUIVisibility="Hidden"></Frame>
+        <Frame Name="AppFrame" Source="MainPage.xaml" NavigationUIVisibility="Hidden"></Frame>
         <Border
             BorderBrush="Red"
             Background="Bisque"

@@ -20,8 +20,6 @@ namespace WpfApp15
 {
     public partial class LoginPage : Page
     {
-        private Connection _connection = new Connection();
-
         public LoginPage()
         {
             InitializeComponent();
@@ -48,6 +46,7 @@ namespace WpfApp15
             }
             NavigationService.Navigate(PageControl.GetMainPage);
         }
+
         private bool CheckAuthorization()
         {
             return textBoxLogin.Text != "Enter login" ||
@@ -55,13 +54,12 @@ namespace WpfApp15
                    textBoxLogin.Text != String.Empty ||
                    textBoxPassword.Text != String.Empty;
         }
+
         private bool CheckLogin()
         {
             try
             {
-                NpgsqlCommand command = new NpgsqlCommand();
-                command.Connection = _connection.connection;
-                command.CommandText = "SELECT \"Role\" FROM \"Employee\" WHERE \"Login\"=@login AND \"Password\"=@password";
+                NpgsqlCommand command = Connection.GetCommand("SELECT \"Role\" FROM \"Employee\" WHERE \"Login\"=@login AND \"Password\"=@password");
                 command.Parameters.AddWithValue("@login", textBoxLogin.Text.Trim());
                 command.Parameters.AddWithValue("@password", textBoxPassword.Text.Trim());
                 var role = command.ExecuteReader();
@@ -70,9 +68,11 @@ namespace WpfApp15
                     role.Read();
                     if (role.IsDBNull(0))
                     {
-                        PageControl.GetSpecialtyPage.DeleteForUser();
-                        PageControl.GetGroupPage.DeleteForUser();
-                        PageControl.GetStudentPage.DeleteForUsers();
+                        role.Close();
+                        PageControl.GetSpecialtyPage.HideFromUser();
+                        PageControl.GetGroupPage.HideFromUser();
+                        PageControl.GetStudentPage.HideFromUser();
+                        PageControl.GetTeacherPage.HideFromUser();
                     }
 
                     //data.Read();

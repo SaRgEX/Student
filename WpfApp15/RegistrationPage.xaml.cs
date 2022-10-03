@@ -20,8 +20,6 @@ namespace WpfApp15
 {
     public partial class RegistrationPage : Page
     {
-        private Connection _connection = new Connection();
-
         public RegistrationPage()
         {
             InitializeComponent();
@@ -43,6 +41,7 @@ namespace WpfApp15
             }
             InsertData();
         }
+
         private bool ValidInput()
         {
             if (EmptyInput())
@@ -57,6 +56,7 @@ namespace WpfApp15
             }
             return true;
         }
+
         private bool EmptyInput()
         {
             return textBoxName.Text == "Enter name" ||
@@ -71,9 +71,7 @@ namespace WpfApp15
         {
             try
             {
-                NpgsqlCommand command = new NpgsqlCommand();
-                command.Connection = _connection.connection;
-                command.CommandText = "SELECT \"Login\" FROM \"Employee\"";
+                NpgsqlCommand command = Connection.GetCommand("SELECT \"Login\" FROM \"Employee\"");
                 NpgsqlDataReader login = command.ExecuteReader();
                 while (login.Read())
                 {
@@ -87,13 +85,12 @@ namespace WpfApp15
             }
             return false;
         }
+
         private void InsertData()
         {
             try
             {
-                NpgsqlCommand command = new NpgsqlCommand();
-                command.Connection = _connection.connection;
-                command.CommandText = "INSERT INTO \"Employee\" (\"FullName\", \"Login\", \"Password\") VALUES (@FullName, @Login, @Password)";
+                NpgsqlCommand command = Connection.GetCommand("INSERT INTO \"Employee\" (\"FullName\", \"Login\", \"Password\") VALUES (@FullName, @Login, @Password)");
                 command.Parameters.AddWithValue("@FullName", NpgsqlDbType.Varchar, textBoxName.Text);
                 command.Parameters.AddWithValue("@Login", NpgsqlDbType.Varchar, textBoxLogin.Text);
                 command.Parameters.AddWithValue("@Password", NpgsqlDbType.Varchar, textBoxPassword.Text);

@@ -22,8 +22,6 @@ namespace WpfApp15
         public ObservableCollection<Student> students { get; set; } = new ObservableCollection<Student>();
         public ObservableCollection<Group> group { get; set; } = new ObservableCollection<Group>();
 
-        private Connection _connection = new Connection();
-
         public StudentPage()
         {
             InitializeComponent();
@@ -35,14 +33,13 @@ namespace WpfApp15
                 Source = PageControl.GetGroupPage.group
             });
         }
+
         private void LoadStudent()
         {
             try
             {
                 students.Clear();
-                NpgsqlCommand command = new NpgsqlCommand();
-                command.Connection = _connection.connection;
-                command.CommandText = "SELECT \"IdStudent\", \"FullName\", \"IdGroup\" FROM \"Student\"";
+                NpgsqlCommand command = Connection.GetCommand("SELECT \"IdStudent\", \"FullName\", \"IdGroup\" FROM \"Student\"");
                 var result = command.ExecuteReader();
                 if (result.HasRows)
                 {
@@ -58,16 +55,15 @@ namespace WpfApp15
                 MainWindow.MessageShow(ex.Message);
             }
         }
+
         private void ButtonAddStudent(object sender, RoutedEventArgs e)
         {
             try
             {
-                NpgsqlCommand command = new NpgsqlCommand();
-                command.Connection = _connection.connection;
-                command.CommandText = "INSERT INTO \"Student\" (\"FullName\", \"IdGroup\")" +
-                    "VALUES (@FullName, @IdGroup)";
+                NpgsqlCommand command = Connection.GetCommand("INSERT INTO \"Student\" (\"FullName\", \"IdGroup\") VALUES (@FullName, @IdGroup)");
                 command.Parameters.AddWithValue("@FullName", NpgsqlDbType.Varchar, textBox.Text);
                 command.Parameters.AddWithValue("@IdGroup", NpgsqlDbType.Integer, (comboBox.SelectedItem as Group).IdGroup);
+                int result = command.ExecuteNonQuery();
                 LoadStudent();
             }
             catch (Exception ex)
@@ -75,24 +71,27 @@ namespace WpfApp15
                 MainWindow.MessageShow(ex.Message);
             }
         }
+
         private void ButtonHome(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(PageControl.GetMainPage);
         }
+
         private void ButtonNext(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(PageControl.GetSpecialtyPage);
+            NavigationService.Navigate(PageControl.GetTeacherPage);
         }
+
         private void ButtonBack(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(PageControl.GetGroupPage);
         }
-        public void DeleteForUsers()
+        public void HideFromUser()
         {
             for (int i = 0; i < stackPanel.Children.Count - 1; i++)
             {
                 stackPanel.Children[i].Visibility = Visibility.Collapsed;
             }
-        }
+        } 
     }
 }
